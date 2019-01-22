@@ -9,8 +9,11 @@ import {
 } from "react-native";
 import { Icon } from "react-native-elements";
 import { FlatList } from "react-native-gesture-handler";
+import { fetchAllCategoryData } from "../actions/action";
+import { connect } from "react-redux";
+import { incrementCount, dcrementCount } from "../actions/action";
 
-export default class Home extends Component {
+class Home extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: "Welcome",
@@ -29,24 +32,27 @@ export default class Home extends Component {
   };
 
   componentDidMount() {
-    fetch("http://10.0.2.2:3000/allCategory")
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState({
-          allCategoryData: responseJson
-        });
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    this.props.fetchAllCategoryData();
   }
 
   render() {
-    console.log("List Data: ", this.state.allCategoryData);
-    const { navigation } = this.props;
-    console.log("Navigation: ", navigation);
     return (
       <View style={styles.container}>
+        <View
+          style={{
+            flexDirection: "row",
+            width: 200,
+            justifyContent: "space-around"
+          }}
+        >
+          <TouchableOpacity onPress={() => this.props.increaseCounter()}>
+            <Text style={{ fontSize: 20 }}>Increase</Text>
+          </TouchableOpacity>
+          <Text style={{ fontSize: 20 }}>{this.props.counter}</Text>
+          <TouchableOpacity onPress={() => this.props.decreaseCounter()}>
+            <Text style={{ fontSize: 20 }}>Decrease</Text>
+          </TouchableOpacity>
+        </View>
         <FlatList
           data={categories}
           renderItem={this.renderCategories}
@@ -79,6 +85,19 @@ export default class Home extends Component {
     );
   };
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    increaseCounter: () => dispatch(incrementCount()),
+    decreaseCounter: () => dispatch(dcrementCount()),
+    fetchAllCategoryData: () => dispatch(fetchAllCategoryData())
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Home);
 
 const styles = StyleSheet.create({
   container: {

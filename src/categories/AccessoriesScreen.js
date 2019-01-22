@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import GridView from "react-native-super-grid";
 import { widthPercentageToDP, heightPercentageToDP } from "../utils/PixelRatioConverter";
+import {connect} from 'react-redux';
 
-export default class AccessoriesScreen extends Component {
+class AccessoriesScreen extends Component {
 
   // static navigationOptions = function() {
   //   return {
@@ -14,12 +15,12 @@ export default class AccessoriesScreen extends Component {
   render() {
     // const { category } = this.props.navigation.getParam("data");
     const allCategoryData = this.props.navigation.getParam("listData");
-    console.log("Category List: ", this.props.category);
+    console.log("Category List: ", this.props.categoryData);
     return (
       <View style={styles.container}>
         <GridView
           itemDimension={130}
-          items={allCategoryData}
+          items={this.props.categoryData}
           renderItem={item => (
             <TouchableOpacity 
             onPress={() =>
@@ -39,6 +40,17 @@ export default class AccessoriesScreen extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    categoryData: state.catergoryData
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(AccessoriesScreen);
 
 const styles = StyleSheet.create({
   container: {
