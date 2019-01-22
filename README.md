@@ -13,19 +13,19 @@ $ npm install
 ```
 Install JSON Server
 ```
-npm install -g json-server
+$ npm install -g json-server
 ```
 Start JSON Server
 ```
-json-server --watch db.json
+$ json-server --watch db.json
 ```
 
 # Development
 IOS
 ```
-react-native run-ios
+$ react-native run-ios
 ```
 Android
 ```
-react-native run-android
+$ react-native run-android
 ```
