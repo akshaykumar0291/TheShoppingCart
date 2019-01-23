@@ -13,9 +13,6 @@ class AccessoriesScreen extends Component {
   // };
 
   render() {
-    // const { category } = this.props.navigation.getParam("data");
-    const allCategoryData = this.props.navigation.getParam("listData");
-    console.log("Category List: ", this.props.categoryData);
     return (
       <View style={styles.container}>
         <GridView

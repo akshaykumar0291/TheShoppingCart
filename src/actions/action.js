@@ -1,4 +1,4 @@
-// import { FETCH_DATA_RESPONSE } from "./type";
+import * as types from "./type";
 
 export function fetchAllCategoryData() {
     return async function(dispatch) {
@@ -13,18 +13,4 @@ export function fetchAllCategoryData() {
           data
         });
       };
-}
-
-import * as types from "./type";
-
-export function incrementCount() {
-  return {
-    type: types.INCREASE_COUNTER
-  };
-}
-
-export function dcrementCount() {
-  return {
-    type: types.DECREASE_COUNTER
-  };
 }
