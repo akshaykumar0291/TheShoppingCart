@@ -9,11 +9,14 @@ import { connect } from "react-redux";
 import * as _ from "lodash";
 
 class AccessoriesScreen extends Component {
-  // static navigationOptions = function() {
-  //   return {
-  //     title: "Products"
-  //   };
-  // };
+  static navigationOptions = function() {
+    return {
+      headerTintColor: '#ffffff',
+      headerStyle: {
+        backgroundColor: 'blue',
+      },
+    };
+  };
 
   render() {
     const {id} = this.props.navigation.getParam("data");

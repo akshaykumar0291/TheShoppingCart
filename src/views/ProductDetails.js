@@ -11,15 +11,19 @@ import {
   widthPercentageToDP,
   heightPercentageToDP
 } from "../utils/PixelRatioConverter";
-import {Card} from "native-base";
+import { Card } from "native-base";
 import { addToCartList } from "../actions/action";
 import { connect } from "react-redux";
+import Toast, { DURATION } from "react-native-easy-toast";
 
 class ProductDetails extends Component {
-
   static navigationOptions = function() {
     return {
-      title: "Product Details"
+      title: "Product Details",
+      headerTintColor: "#ffffff",
+      headerStyle: {
+        backgroundColor: "blue"
+      }
     };
   };
 
@@ -50,7 +54,7 @@ class ProductDetails extends Component {
             </Text>
           </View>
         </ScrollView>
-        
+
         <Card
           style={{
             marginBottom: 0,
@@ -59,18 +63,19 @@ class ProductDetails extends Component {
         >
           <TouchableOpacity
             style={styles.cartButton}
-            onPress={() =>
-              // this.props.navigation.navigate("Cart", {
-              //   cartItem: productDetails
-              // })
-              this.props.addToCartList(productDetails)
-            }
+            onPress={() => {
+              this.refs.toast.show("Product Added to Cart", DURATION.LENGTH_LONG);
+              this.props.addToCartList(productDetails);
+            }}
           >
             <Text style={{ color: "#ffffff", fontWeight: "bold" }}>
               Add To Cart
             </Text>
           </TouchableOpacity>
-          </Card>
+        </Card>
+        <Toast ref="toast"
+        position='center'
+        opacity={0.8} />
       </View>
     );
   }

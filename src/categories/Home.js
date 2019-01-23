@@ -16,17 +16,23 @@ class Home extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: "Welcome",
+      headerTintColor: '#ffffff',
+      headerStyle: {
+        backgroundColor: 'blue',
+      },
       headerLeft: (
         <Icon
           name="menu"
           type="MaterialIcons"
-          onPress={() => navigation.openDrawer()}
+          color='#ffffff'
+          onPress={() => navigation.toggleDrawer()}
         />
       ),
       headerRight: (
         <Icon
           name="local-grocery-store"
           type="MaterialIcons"
+          color='#ffffff'
           onPress={() => navigation.navigate("Cart")}
         />
       )
