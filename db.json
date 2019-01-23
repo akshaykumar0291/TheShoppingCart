@@ -3,6 +3,7 @@
       {
         "id": 1,
         "name": "Winter Jacket",
+        "category_id": 1,
         "category": "Men Accessories",
         "price": 20,
         "image": "jacket.png"
@@ -10,6 +11,7 @@
       {
         "id": 2,
         "name": "Wrist Watch",
+        "category_id": 1,
         "category": "Men Accessories",
         "price": 30,
         "image": "watch.png"
@@ -17,6 +19,7 @@
       {
         "id": 3,
         "name": "Wrist Band",
+        "category_id": 2,
         "category": "Women Accessories",
         "price": 5,
         "image": "band.png"
@@ -24,6 +27,7 @@
       {
         "id": 4,
         "name": "Hand bag",
+        "category_id": 2,
         "category": "Women Accessories",
         "price": 20,
         "image": "bag.png"
@@ -31,6 +35,7 @@
       {
         "id": 5,
         "name": "Shoes",
+        "category_id": 3,
         "category": "Children Accessories",
         "price": 20,
         "image": "shoes.png"
@@ -38,6 +43,7 @@
       {
         "id": 6,
         "name": "Kid Scraf",
+        "category_id": 3,
         "category": "Children Accessories",
         "price": 10,
         "image": "scraf.png"
@@ -45,6 +51,7 @@
       {
         "id": 7,
         "name": "Soccer Ball",
+        "category_id": 4,
         "category": "Sports Accessories",
         "price": 20,
         "image": "soccerball.png"
@@ -52,65 +59,10 @@
       {
         "id": 8,
         "name": "Base Ball",
+        "category_id": 4,
         "category": "Sports Accessories",
         "price": 15,
         "image": "baseball.png"
-      },
-      {
-        "id": 9,
-        "name": "Base Ball",
-        "category": "Sports Accessories",
-        "price": 15,
-        "image": "baseball.png"
-      },
-      {
-        "id": 10,
-        "name": "Base Ball",
-        "category": "Sports Accessories",
-        "price": 15,
-        "image": "baseball.png"
-      },
-      {
-        "id": 11,
-        "name": "Base Ball",
-        "category": "Sports Accessories",
-        "price": 15,
-        "image": "baseball.png"
-      },
-      {
-        "id": 12,
-        "name": "Base Ball",
-        "category": "Sports Accessories",
-        "price": 15,
-        "image": "baseball.png"
-      },
-      {
-        "id": 13,
-        "name": "Base Ball",
-        "category": "Sports Accessories",
-        "price": 15,
-        "image": "baseball.png"
-      },
-      {
-        "id": 14,
-        "name": "Base Ball",
-        "category": "Sports Accessories",
-        "price": 15,
-        "image": "baseball.png"
-      },
-      {
-        "id": 15,
-        "name": "Base Ball",
-        "category": "Sports Accessories",
-        "price": 15,
-        "image": "baseball.png"
-      },
-      {
-        "id": 16,
-        "name": "Base Ball",
-        "category": "Sports Accessories",
-        "price": 15,
-        "image": "baseball.png"
-      }    
+      }  
     ]
   } 

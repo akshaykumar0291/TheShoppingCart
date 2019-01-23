@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import GridView from "react-native-super-grid";
-import { widthPercentageToDP, heightPercentageToDP } from "../utils/PixelRatioConverter";
-import {connect} from 'react-redux';
+import {
+  widthPercentageToDP,
+  heightPercentageToDP
+} from "../utils/PixelRatioConverter";
+import { connect } from "react-redux";
+import * as _ from "lodash";
 
 class AccessoriesScreen extends Component {
-
   // static navigationOptions = function() {
   //   return {
   //     title: "Products"
@@ -13,21 +16,29 @@ class AccessoriesScreen extends Component {
   // };
 
   render() {
+    const {id} = this.props.navigation.getParam("data");
+    console.log("Item: ", id);
+    const categoryData = _.filter(this.props.categoryData, ['category_id',id]);
     return (
       <View style={styles.container}>
         <GridView
           itemDimension={130}
-          items={this.props.categoryData}
+          items={categoryData}
           renderItem={item => (
-            <TouchableOpacity 
-            onPress={() =>
-              this.props.navigation.navigate("ProductDetails", {
-                productDetails: item
-              })
-            }>
+            <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate("ProductDetails", {
+                  productDetails: item
+                })
+              }
+            >
               <View style={styles.grid}>
-                <Image style={styles.thumbnail} source={require("../images/jacket.jpg")} />
+                <Image
+                  style={styles.thumbnail}
+                  source={require("../images/jacket.jpg")}
+                />
                 <Text>{item.name}</Text>
+                <Text>{item.category}</Text>
                 <Text style={{ color: "#000000" }}>${item.price}</Text>
               </View>
             </TouchableOpacity>
@@ -59,5 +70,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#ffffff"
   },
-  thumbnail:{width: widthPercentageToDP("25%"), height: widthPercentageToDP("40%")}
+  thumbnail: {
+    width: widthPercentageToDP("25%"),
+    height: widthPercentageToDP("40%")
+  }
 });

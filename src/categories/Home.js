@@ -50,12 +50,11 @@ class Home extends Component {
   renderCategories = ({ item }) => {
     return (
       <TouchableOpacity
-        onPress={() =>
+        onPress={() => {
           this.props.navigation.navigate("MenAccessories", {
-            data: item,
-            listData: this.state.allCategoryData
-          })
-        }
+            data: item
+          });
+        }}
       >
         <View>
           <Image style={styles.image} source={{ uri: item.image }} />
