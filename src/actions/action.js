@@ -14,3 +14,10 @@ export function fetchAllCategoryData() {
         });
       };
 }
+
+export function addToCartList(productData){
+  return {
+    type: types.ADD_TO_CARTLIST,
+    productData
+  }
+}

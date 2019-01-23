@@ -5,16 +5,18 @@ import {
   View,
   Image,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  FlatList
 } from "react-native";
 import { Card } from "native-base";
 import {
   widthPercentageToDP,
   heightPercentageToDP
 } from "../utils/PixelRatioConverter";
+import { connect } from "react-redux";
 import { Icon } from "react-native-elements";
 
-export default class Cart extends Component {
+class Cart extends Component {
 
   static navigationOptions = function() {
     return {
@@ -26,34 +28,22 @@ export default class Cart extends Component {
     quantity: 0
   };
 
-  render() {
-    const { id, name, price, image, category } = this.props.navigation.getParam(
-      "cartItem"
-    );
+  renderCartProduct = ({ item }) => {
     return (
-      <View style={styles.container}>
-        <ScrollView>
-          <Card
+      <View>
+        <Card
             style={{
-              padding: widthPercentageToDP("4%"),
+              padding: widthPercentageToDP("2%"),
               marginLeft: widthPercentageToDP("2%"),
               marginRight: widthPercentageToDP("2%"),
-              marginTop: widthPercentageToDP("2%"),
+              marginTop: widthPercentageToDP("1%"),
               backgroundColor: "#FFFFFF"
             }}
           >
-            <Text>Product Details</Text>
-            <View
-              style={{
-                backgroundColor: "#e6e6e6",
-                width: null,
-                height: heightPercentageToDP("0.1%")
-              }}
-            />
             <View style={styles.viewStyle}>
               <View>
-                <Text style={styles.textStyle}>{name}</Text>
-                <Text style={{marginTop: 5, fontSize: 18, color: '#1e334e'}}>${price}</Text>
+                <Text style={styles.textStyle}>{item.name}</Text>
+                <Text style={{marginTop: 5, fontSize: 18, color: '#1e334e'}}>${item.price}</Text>
                 <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5 }}>
                   <Icon
                     name="do-not-disturb-on"
@@ -76,16 +66,30 @@ export default class Cart extends Component {
                   />
                 </View>
               </View>
-              <View style={{ backgroundColor: "#ff9900" }}>
+              <View style={{ backgroundColor: "#ffffff" }}>
                 <Image
-                  style={{ width: 50, height: 100 }}
+                  style={{ width: 30, height: 60 }}
                   source={require("../images/jacket.jpg")}
                 />
               </View>
             </View>
           </Card>
+      </View> 
+    ) 
+  }
 
-          <Card
+  render() {
+   const cartProduct =  this.props.cartProductData;
+   console.log("Cart Product: ", cartProduct);
+    return(
+      <View style={styles.container}>
+      <Text>Product Details</Text>
+        <FlatList
+          data={cartProduct}
+          renderItem={this.renderCartProduct}
+          keyExtractor={(item, index) => index.toString()}
+        />
+        <Card
             style={{
               padding: widthPercentageToDP("4%"),
               marginLeft: widthPercentageToDP("2%"),
@@ -104,7 +108,7 @@ export default class Cart extends Component {
             />
             <View style={styles.viewStyle}>
               <Text style={styles.textStyle}>Total Price</Text>
-              <Text style={styles.textStyle}>${price}</Text>
+              <Text style={styles.textStyle}>$100</Text>
             </View>
             <View style={styles.viewStyle}>
               <Text style={styles.textStyle}>Delivery</Text>
@@ -112,12 +116,10 @@ export default class Cart extends Component {
             </View>
             <View style={styles.viewStyle}>
               <Text style={styles.textStyle}>Amount Payable</Text>
-              <Text style={styles.textStyle}>${price}</Text>
+              <Text style={styles.textStyle}>$100</Text>
             </View>
           </Card>
-        </ScrollView>
-
-        <Card
+          <Card
           style={{
             marginBottom: 0,
             marginLeft: 0,
@@ -134,6 +136,17 @@ export default class Cart extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    cartProductData: state.cartProductData
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(Cart);
 
 const styles = StyleSheet.create({
   container: {

@@ -7,14 +7,15 @@ import {
   TouchableOpacity,
   ScrollView
 } from "react-native";
-import { colors } from "react-native-elements";
 import {
   widthPercentageToDP,
   heightPercentageToDP
 } from "../utils/PixelRatioConverter";
 import {Card} from "native-base";
+import { addToCartList } from "../actions/action";
+import { connect } from "react-redux";
 
-export default class ProductDetails extends Component {
+class ProductDetails extends Component {
 
   static navigationOptions = function() {
     return {
@@ -59,9 +60,10 @@ export default class ProductDetails extends Component {
           <TouchableOpacity
             style={styles.cartButton}
             onPress={() =>
-              this.props.navigation.navigate("Cart", {
-                cartItem: productDetails
-              })
+              // this.props.navigation.navigate("Cart", {
+              //   cartItem: productDetails
+              // })
+              this.props.addToCartList(productDetails)
             }
           >
             <Text style={{ color: "#ffffff", fontWeight: "bold" }}>
@@ -73,6 +75,17 @@ export default class ProductDetails extends Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addToCartList: productData => dispatch(addToCartList(productData))
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ProductDetails);
 
 const styles = StyleSheet.create({
   container: {

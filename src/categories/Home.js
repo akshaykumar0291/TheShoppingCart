@@ -11,7 +11,6 @@ import { Icon } from "react-native-elements";
 import { FlatList } from "react-native-gesture-handler";
 import { fetchAllCategoryData } from "../actions/action";
 import { connect } from "react-redux";
-import { incrementCount, dcrementCount } from "../actions/action";
 
 class Home extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -22,6 +21,13 @@ class Home extends Component {
           name="menu"
           type="MaterialIcons"
           onPress={() => navigation.openDrawer()}
+        />
+      ),
+      headerRight: (
+        <Icon
+          name="local-grocery-store"
+          type="MaterialIcons"
+          onPress={() => navigation.navigate("Cart")}
         />
       )
     };
